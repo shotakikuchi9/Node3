@@ -59,11 +59,7 @@ const setAnswers = () => {
   while(choices.firstChild) {
     choices.removeChild(choices.firstChild);
   };
-  const answers = [
-    quizSet[currentNum].correct_answer,
-    ...quizSet[currentNum].incorrect_answers
-  ];
-  const shuffledAnswers = shuffle(answers);
+  const shuffledAnswers = quizSet[currentNum].shuffledAnswers
   shuffledAnswers.forEach((shuffledanswer) => {
     const li = document.createElement('li');
     const selectButton = document.createElement('button');
@@ -74,14 +70,6 @@ const setAnswers = () => {
     })
     choices.appendChild(li);
   });
-}
-// シャッフル機能
-const shuffle = (arr) => {
-  for (let i = arr.length-1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[j], arr[i]] = [arr[i], arr[j]];
-  }
-  return arr;
 }
 // 解答正誤判定
 const checkAnswer = (li) => {
